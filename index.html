@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerWave Outboards | Premium Boat Motors</title>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="MarinePro Outboards">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="products.php">Products</a></li>
+                    <li><a href="brands.php">Brands</a></li>
+                    <li><a href="services.php">Services</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="btn-login"><i class="fas fa-user"></i></a>
+                <a href="cart.php" class="btn-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span> <!-- PHP will update this -->
+                </a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Wave Effect -->
+    <section class="hero">
+        <div class="wave-effect"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Outboard Motors</h1>
+                <p>Power your marine adventures with our high-performance engines</p>
+                <div class="hero-btns">
+                    <a href="products.php" class="btn btn-primary">Shop Now</a>
+                    <a href="#featured" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/hero-motor.png" alt="Premium Outboard Motor">
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section">
+        <div class="container">
+            <h2>Trusted by the Best Brands</h2>
+            <div class="brands-grid">
+                <!-- PHP will loop through brands from database -->
+                <?php /* include('includes/get_brands.php'); */ ?>
+                <div class="brand-item placeholder">
+                    <img src="assets/images/brand-placeholder.png" alt="Brand logo">
+                </div>
+                <!-- More brand items will be dynamically inserted by PHP -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Outboards</h2>
+                <a href="products.php" class="view-all">View All</a>
+            </div>
+            <div class="products-grid">
+                <!-- PHP will loop through featured products -->
+                <?php /* include('includes/get_featured_products.php'); */ ?>
+                <div class="product-card placeholder">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="assets/images/product-placeholder.png" alt="Outboard motor">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Product Name</h3>
+                        <div class="product-meta">
+                            <span class="product-hp"><i class="fas fa-bolt"></i> 150HP</span>
+                            <span class="product-type">4-Stroke</span>
+                        </div>
+                        <div class="product-price">$0,000</div>
+                        <button class="btn btn-small">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- More product cards will be dynamically inserted by PHP -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2>Why Choose MarinePro</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>5-Year Warranty</h3>
+                    <p>Industry-leading protection for your investment</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <h3>Free Delivery</h3>
+                    <p>On all orders over $5,000 to marinas nationwide</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Expert Service</h3>
+                    <p>Certified technicians for installation and maintenance</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Financing Options</h3>
+                    <p>Flexible payment plans available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="wave-effect reverse"></div>
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-slider">
+                
+                <?php /* include('includes/get_testimonials.php'); */ ?>
+                <div class="testimonial-item placeholder">
+                    <div class="testimonial-content">
+                        <p>"This is where a customer testimonial will appear from the database."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="assets/images/avatar-placeholder.png" alt="Customer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Customer Name</h4>
+                            <span>Boat Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Power Your Boat?</h2>
+                <p>Get expert advice on choosing the perfect outboard for your needs</p>
+                <div class="cta-btns">
+                    <a href="contact.php" class="btn btn-primary">Contact Us</a>
+                    <a href="tel:+15596777857" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> +15596777857
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/logo-white.png" alt="MarinePro Outboards" class="footer-logo">
+                    <p>Premium outboard motors and marine solutions since 2005</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.php">Shop Outboards</a></li>
+                        <li><a href="services.php">Services</a></li>
+                        <li><a href="warranty.php">Warranty</a></li>
+                        <li><a href="financing.php">Financing</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="contact.php">Contact Us</a></li>
+                        <li><a href="faq.php">FAQs</a></li>
+                        <li><a href="shipping.php">Shipping Policy</a></li>
+                        <li><a href="returns.php">Returns</a></li>
+                        <li><a href="privacy.php">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for updates and special offers</p>
+                    <form class="newsletter-form" action="includes/subscribe.php" method="POST">
+                        <input type="email" name="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-small">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PowerWave Outboards. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/home.js"></script>
+</body>
+</html>
