@@ -1,0 +1,362 @@
+<?php
+// PHP integration point: This will be replaced with actual PHP code to fetch product details
+// based on product ID from URL or database
+/*
+require_once __DIR__ . '/includes/db_connect.php';
+require_once __DIR__ . '/classes/Product.php';
+
+$product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$product = Product::getById($product_id);
+
+if (!$product) {
+    header("Location: products.php");
+    exit;
+}
+*/
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerWave Outboards - Product Details</title>
+    <link rel="stylesheet" href="assets/css/product-details.css">
+</head>
+<body class="product-details-page">
+    <?php include 'includes/header.php'; ?>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="index.php">Home</a> &gt; 
+            <a href="products.php">Products</a> &gt; 
+            <span>Product Details</span>
+        </div>
+
+        <div class="product-details-container">
+            <!-- PHP integration point: Product images will be fetched from database -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="assets/images/products/placeholder.jpg" alt="Main product image" id="main-product-image">
+                </div>
+                <div class="thumbnail-gallery">
+                    <!-- PHP integration point: Thumbnails will be generated from product images -->
+                    <div class="thumbnail active" data-image="assets/images/products/placeholder.jpg">
+                        <img src="assets/images/products/placeholder-thumb.jpg" alt="Product thumbnail">
+                    </div>
+                    <div class="thumbnail" data-image="assets/images/products/placeholder2.jpg">
+                        <img src="assets/images/products/placeholder2-thumb.jpg" alt="Product thumbnail">
+                    </div>
+                    <div class="thumbnail" data-image="assets/images/products/placeholder3.jpg">
+                        <img src="assets/images/products/placeholder3-thumb.jpg" alt="Product thumbnail">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <!-- PHP integration point: Product details will be populated from database -->
+                <h1 class="product-title">Mercury 150 HP FourStroke</h1>
+                <div class="product-meta">
+                    <span class="product-sku">SKU: PW-MERC150</span>
+                    <span class="product-stock in-stock">In Stock</span>
+                    <!-- PHP integration point: Stock status will be dynamic -->
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">$12,499.00</span>
+                    <span class="old-price">$13,299.00</span>
+                    <span class="discount-badge">Save $800</span>
+                </div>
+
+                <div class="product-description">
+                    <p>The Mercury 150 HP FourStroke outboard delivers outstanding performance, fuel efficiency and reliability. With a sleek design and advanced technology, it's perfect for both recreational and commercial use.</p>
+                    
+                    <ul class="feature-list">
+                        <li>150 HP @ 5500 RPM</li>
+                        <li>2.1L displacement</li>
+                        <li>Electronic Fuel Injection</li>
+                        <li>Power Trim & Tilt</li>
+                        <li>Multi-function tiller handle</li>
+                    </ul>
+                </div>
+
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                    <button class="btn btn-secondary">Add to Wishlist</button>
+                </div>
+
+                <div class="product-specs">
+                    <h3>Specifications</h3>
+                    <table class="specs-table">
+                        <tr>
+                            <th>Engine Type</th>
+                            <td>4-Stroke</td>
+                        </tr>
+                        <tr>
+                            <th>Horsepower</th>
+                            <td>150 HP</td>
+                        </tr>
+                        <tr>
+                            <th>Shaft Length</th>
+                            <td>20" / 25"</td>
+                        </tr>
+                        <tr>
+                            <th>Weight</th>
+                            <td>455 lbs (206 kg)</td>
+                        </tr>
+                        <tr>
+                            <th>Fuel System</th>
+                            <td>Electronic Fuel Injection</td>
+                        </tr>
+                        <tr>
+                            <th>Warranty</th>
+                            <td>3 Years Limited</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tabs">
+            <ul class="tabs-nav">
+                <li class="active" data-tab="description">Description</li>
+                <li data-tab="specifications">Detailed Specifications</li>
+                <li data-tab="reviews">Reviews</li>
+                <li data-tab="warranty">Warranty</li>
+            </ul>
+
+            <div class="tabs-content">
+                <div class="tab-pane active" id="description">
+                    <h3>Detailed Description</h3>
+                    <p>The Mercury 150 HP FourStroke outboard engine combines power and efficiency with smooth, quiet operation. Its lightweight design and compact size make it ideal for a variety of boat types, from fishing boats to pontoons.</p>
+                    <p>Features include:</p>
+                    <ul>
+                        <li>Advanced MidSection design for reduced vibration</li>
+                        <li>SmartCraft Digital Throttle & Shift for smooth operation</li>
+                        <li>Corrosion-resistant components for saltwater use</li>
+                        <li>Low emissions with advanced combustion technology</li>
+                    </ul>
+                </div>
+
+                <div class="tab-pane" id="specifications">
+                    <h3>Technical Specifications</h3>
+                    <table class="detailed-specs">
+                        <!-- PHP integration point: Detailed specs will be fetched from database -->
+                        <tr>
+                            <th>Engine Type</th>
+                            <td>4-Stroke DOHC 16-Valve</td>
+                        </tr>
+                        <tr>
+                            <th>Displacement</th>
+                            <td>2.1L (2096 cc)</td>
+                        </tr>
+                        <tr>
+                            <th>Full Throttle RPM Range</th>
+                            <td>5000 - 6000 RPM</td>
+                        </tr>
+                        <tr>
+                            <th>Fuel Induction</th>
+                            <td>Electronic Fuel Injection</td>
+                        </tr>
+                        <tr>
+                            <th>Alternator Output</th>
+                            <td>60 Amp</td>
+                        </tr>
+                        <tr>
+                            <th>Gear Ratio</th>
+                            <td>1.92:1</td>
+                        </tr>
+                        <tr>
+                            <th>Exhaust</th>
+                            <td>Through Propeller</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <!-- PHP integration point: Reviews will be fetched from database -->
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="review-author">John D.</span>
+                            <div class="review-rating">
+                                ★★★★★
+                                <span class="review-date">Posted on 05/15/2023</span>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <p>Excellent performance and fuel efficiency. Much quieter than my old 2-stroke. Highly recommend!</p>
+                        </div>
+                    </div>
+
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="review-author">Sarah M.</span>
+                            <div class="review-rating">
+                                ★★★★☆
+                                <span class="review-date">Posted on 04/22/2023</span>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <p>Great engine overall. Only complaint is the initial cost, but the fuel savings make up for it over time.</p>
+                        </div>
+                    </div>
+
+                    <div class="review-form">
+                        <h4>Write a Review</h4>
+                        <form id="review-form">
+                            <div class="form-group">
+                                <label for="review-rating">Rating</label>
+                                <select id="review-rating" required>
+                                    <option value="">Select rating</option>
+                                    <option value="5">★★★★★ Excellent</option>
+                                    <option value="4">★★★★☆ Very Good</option>
+                                    <option value="3">★★★☆☆ Good</option>
+                                    <option value="2">★★☆☆☆ Fair</option>
+                                    <option value="1">★☆☆☆☆ Poor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-comment">Your Review</label>
+                                <textarea id="review-comment" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="warranty">
+                    <h3>Warranty Information</h3>
+                    <p>This product comes with a 3-year limited warranty covering defects in materials and workmanship. The warranty period begins on the date of purchase.</p>
+                    <p>For complete warranty terms and conditions, please visit our <a href="warranty.php">warranty information page</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="related-products">
+            <h2>You May Also Like</h2>
+            <div class="products-grid">
+                <!-- PHP integration point: Related products will be fetched from database -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <img src="assets/images/products/related1.jpg" alt="Mercury 115 HP">
+                    <h3>Mercury 115 HP FourStroke</h3>
+                    <div class="product-price">
+                        <span class="current-price">$9,999.00</span>
+                    </div>
+                    <a href="product-details.php?id=2" class="btn btn-outline">View Details</a>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/images/products/related2.jpg" alt="Suzuki DF140">
+                    <h3>Suzuki DF140</h3>
+                    <div class="product-price">
+                        <span class="current-price">$11,299.00</span>
+                        <span class="old-price">$12,099.00</span>
+                    </div>
+                    <a href="product-details.php?id=3" class="btn btn-outline">View Details</a>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge">Best Seller</div>
+                    <img src="assets/images/products/related3.jpg" alt="Yamaha F150">
+                    <h3>Yamaha F150</h3>
+                    <div class="product-price">
+                        <span class="current-price">$12,899.00</span>
+                    </div>
+                    <a href="product-details.php?id=4" class="btn btn-outline">View Details</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <?php include 'includes/footer.php'; ?>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Product gallery image switching
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const mainImage = document.getElementById('main-product-image');
+                const newSrc = this.getAttribute('data-image');
+                mainImage.src = newSrc;
+                
+                // Update active thumbnail
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Tab switching functionality
+        document.querySelectorAll('.tabs-nav li').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Update active tab
+                document.querySelectorAll('.tabs-nav li').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding content
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                    if (pane.id === tabId) {
+                        pane.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Quantity selector
+        document.querySelector('.quantity-btn.minus').addEventListener('click', function() {
+            const input = document.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        });
+
+        document.querySelector('.quantity-btn.plus').addEventListener('click', function() {
+            const input = document.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            input.value = value + 1;
+        });
+
+        // PHP integration point: Add to cart functionality will be handled by backend
+        document.querySelector('.add-to-cart').addEventListener('click', function() {
+            const quantity = document.querySelector('.quantity-input').value;
+            const productId = 1; // This will be dynamic from PHP
+            
+            // This will be replaced with actual AJAX call to add to cart
+            alert(`Added ${quantity} item(s) to cart`);
+            
+            /*
+            fetch('/scripts/update_cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: quantity
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update cart count in header
+                    updateCartCount(data.cart_count);
+                    showNotification('Product added to cart');
+                } else {
+                    showNotification('Error adding to cart: ' + data.message, 'error');
+                }
+            });
+            */
+        });
+    </script>
+</body>
+</html>

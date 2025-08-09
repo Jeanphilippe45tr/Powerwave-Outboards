@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outboard Motors | PowerWave Outboards</title>
+    <link rel="stylesheet" href="assets/css/product.css">
+</head>
+<body>
+    <!-- Header will be included via PHP -->
+    <!-- PHP include 'includes/header.php' -->
+
+    <main class="products-page">
+        <!-- Hero Section -->
+        <section class="products-hero wave-pattern">
+            <div class="container">
+                <h1>Our Outboard Motor Collection</h1>
+                <p>Find the perfect motor for your vessel</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="products-main container">
+            <!-- Filters Section -->
+            <aside class="products-filters">
+                <h2>Refine Your Search</h2>
+                
+                <!-- Filter by Brand -->
+                <div class="filter-group">
+                    <h3>Brand</h3>
+                    <ul class="filter-list">
+                        <!-- PHP will generate these from database -->
+                        <!-- Example: -->
+                        <li>
+                            <input type="checkbox" id="brand-mercury" name="brand" value="mercury">
+                            <label for="brand-mercury">Mercury</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="brand-yamaha" name="brand" value="yamaha">
+                            <label for="brand-yamaha">Yamaha</label>
+                        </li>
+                        <!-- More brands will be added by PHP -->
+                    </ul>
+                </div>
+                
+                <!-- Filter by Horsepower -->
+                <div class="filter-group">
+                    <h3>Horsepower</h3>
+                    <div class="range-slider">
+                        <div class="range-values">
+                            <span id="hp-min">0</span> - <span id="hp-max">500</span> HP
+                        </div>
+                        <div class="range-inputs">
+                            <input type="range" id="hp-range" min="0" max="500" step="5" value="0">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filter by Price -->
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <select id="price-range" class="filter-select">
+                        <option value="">All Prices</option>
+                        <option value="0-1000">Under $1,000</option>
+                        <option value="1000-5000">$1,000 - $5,000</option>
+                        <option value="5000-10000">$5,000 - $10,000</option>
+                        <option value="10000-20000">$10,000 - $20,000</option>
+                        <option value="20000">Over $20,000</option>
+                    </select>
+                </div>
+                
+                <!-- Filter by Engine Type -->
+                <div class="filter-group">
+                    <h3>Engine Type</h3>
+                    <ul class="filter-list">
+                        <li>
+                            <input type="checkbox" id="type-2stroke" name="engine-type" value="2stroke">
+                            <label for="type-2stroke">2-Stroke</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="type-4stroke" name="engine-type" value="4stroke">
+                            <label for="type-4stroke">4-Stroke</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="type-electric" name="engine-type" value="electric">
+                            <label for="type-electric">Electric</label>
+                        </li>
+                    </ul>
+                </div>
+                
+                <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+                <button id="reset-filters" class="btn btn-outline">Reset</button>
+            </aside>
+
+            <!-- Products Listing -->
+            <div class="products-listing">
+                <div class="listing-header">
+                    <div class="results-count">
+                        <!-- PHP will generate this -->
+                        Showing <span id="results-count">24</span> of <span id="total-results">48</span> products
+                    </div>
+                    <div class="sort-options">
+                        <label for="sort-by">Sort by:</label>
+                        <select id="sort-by" class="filter-select">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                            <option value="hp-high">Highest Horsepower</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- PHP will loop through products here -->
+                    <!-- Sample product card - will be repeated for each product -->
+                    <article class="product-card">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <img src="assets/images/products/mercury-150.jpg" alt="Mercury 150 HP Outboard Motor">
+                            <div class="quick-view">Quick View</div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product-details.php?id=1">Mercury 150 HP</a></h3>
+                            <div class="product-specs">
+                                <span class="spec-hp">150 HP</span>
+                                <span class="spec-type">4-Stroke</span>
+                                <span class="spec-shaft">20" Shaft</span>
+                            </div>
+                            <div class="product-price">
+                                $12,499
+                                <span class="old-price">$13,999</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-outline">Details</button>
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- End of product card -->
+                    
+                    <!-- More product cards will be added by PHP -->
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <!-- PHP will generate pagination links -->
+                    <a href="#" class="page-nav disabled">❮ Previous</a>
+                    <a href="#" class="page-number active">1</a>
+                    <a href="#" class="page-number">2</a>
+                    <a href="#" class="page-number">3</a>
+                    <span class="page-ellipsis">...</span>
+                    <a href="#" class="page-number">8</a>
+                    <a href="#" class="page-nav">Next ❯</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be included via PHP -->
+    <!-- PHP include 'includes/footer.php' -->
+
+    <!-- Quick View Modal (hidden by default) -->
+    <div id="quick-view-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- PHP will populate this content via AJAX -->
+                <div class="modal-loading">Loading product details...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/product-filter.js"></script>
+</body>
+</html>

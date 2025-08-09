@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | PowerWave Outboards</title>
+    <!-- Favicon (replace with your actual favicon) -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/contact.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Placeholder (PHP include) -->
+    <!-- <?php include 'includes/header.php'; ?> -->
+
+    <header class="contact-header">
+        <div class="header-overlay">
+            <h1>Get in Touch</h1>
+            <p>We're here to help with all your outboard motor needs</p>
+        </div>
+    </header>
+
+    <main class="contact-container">
+        <section class="contact-info">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Our Location</h3>
+                <p>123 Marina Drive<br>Coastal City, OC 12345</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>Sales: (555) 123-4567<br>Service: (555) 765-4321</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>PowerWave@powerwave.com<br>support@powerwave.com</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>Hours</h3>
+                <p>Mon-Fri: 8am - 6pm<br>Sat: 9am - 4pm<br>Sun: Closed</p>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <h2>Send Us a Message</h2>
+            <p>Have questions? Fill out the form below and we'll get back to you within 24 hours.</p>
+            
+            <!-- Contact Form (PHP action to be added) -->
+            <form id="contactForm" action="includes/process_contact.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name*</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject*</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="sales">Sales Inquiry</option>
+                        <option value="service">Service Request</option>
+                        <option value="parts">Parts Inquiry</option>
+                        <option value="general">General Question</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message*</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </section>
+
+        <section class="map-section">
+            <h2>Find Us</h2>
+            <div class="map-container">
+                <!-- Embedded Google Map (replace with your actual embed code) -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678901234567!2d-123.456789!3d45.678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDQwJzQ0LjAiTiAxMjPCsDI3JzI0LjQiVw!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" 
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Placeholder (PHP include) -->
+    <!-- <?php include 'includes/footer.php'; ?> -->
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- Backend Integration Notes:
+        1. The form action should point to your PHP processor (process_contact.php)
+        2. The processor should:
+           - Sanitize and validate all inputs
+           - Send email notifications
+           - Optionally store in database
+           - Return success/error messages
+        3. Consider adding CAPTCHA for spam protection
+    -->
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerWave outboard Motor Brands | WaveRider Outboards</title>
+    <link rel="stylesheet" href="assets/css/brands.css">
+   
+</head>
+<body>
+    <!-- Header will be included via PHP -->
+    <!-- PHP include '../includes/header.php' -->
+
+    <main class="brands-container">
+        <section class="brands-header wave-pattern">
+            <div class="container">
+                <h1>Our Trusted Outboard Motor Brands</h1>
+                <p>Quality brands for every boating need</p>
+            </div>
+        </section>
+
+        <section class="brands-intro container">
+            <p>At WaveRider Outboards, we partner with the most reliable and innovative outboard motor manufacturers in the industry. Each brand we carry has been carefully selected for its performance, durability, and customer satisfaction.</p>
+        </section>
+
+        <section class="brands-grid container">
+            <!-- PHP will loop through brands from database -->
+            <!-- Brand card example - this will be repeated for each brand -->
+            <div class="brand-card">
+                <div class="brand-logo">
+                    <img src="../images/brands/mercury-logo.png" alt="Mercury Marine">
+                </div>
+                <div class="brand-info">
+                    <h3>Mercury Marine</h3>
+                    <p>Leading innovator in outboard motors since 1939, offering reliable and high-performance engines.</p>
+                    <div class="brand-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Models</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">2.5-600</span>
+                            <span class="stat-label">HP Range</span>
+                        </div>
+                    </div>
+                    <a href="products/catalog.html" class="btn btn-outline">View Products</a>
+                </div>
+            </div>
+            <!-- End of brand card -->
+            
+            <!-- PHP will end the loop here -->
+        </section>
+
+        <section class="brand-features container">
+            <h2>Why Choose Our Brands</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Proven Reliability</h3>
+                    <p>All our brands have decades of marine engineering experience and proven track records.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Advanced Technology</h3>
+                    <p>Featuring the latest in fuel efficiency, emissions control, and digital integration.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌊</div>
+                    <h3>Saltwater Ready</h3>
+                    <p>Special corrosion protection for marine environments and saltwater use.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Local Support</h3>
+                    <p>Comprehensive dealer network for maintenance and warranty service.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be included via PHP -->
+    <!-- PHP include '../includes/footer.php' -->
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Brand page specific JavaScript can go here
+            // For example, animation effects when scrolling to brand cards
+            
+            const brandCards = document.querySelectorAll('.brand-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            brandCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

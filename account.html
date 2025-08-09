@@ -1,0 +1,445 @@
+<?php
+// PHP integration point: This will be replaced with actual PHP code to:
+// 1. Check if user is logged in
+// 2. Fetch user account details from database
+/*
+require_once __DIR__ . '/includes/db_connect.php';
+require_once __DIR__ . '/includes/auth.php';
+
+if (!isLoggedIn()) {
+    header("Location: login.php");
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+$user = User::getById($user_id);
+
+if (!$user) {
+    header("Location: login.php");
+    exit;
+}
+
+$orders = Order::getByUserId($user_id); // Fetch user's orders
+*/
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerWave Outboards - My Account</title>
+    <link rel="stylesheet" href="assets/css/account.css">
+    
+</head>
+<body class="account-page">
+    <?php include 'includes/header.php'; ?>
+
+    <main class="container">
+        <div class="account-header">
+            <h1>My Account</h1>
+            <div class="welcome-message">
+                <!-- PHP integration point: Display user's name -->
+                <p>Welcome back, <strong>John Doe</strong>!</p>
+                <a href="logout.php" class="logout-link">Logout</a>
+            </div>
+        </div>
+
+        <div class="account-container">
+            <aside class="account-sidebar">
+                <nav class="account-nav">
+                    <ul>
+                        <li class="active">
+                            <a href="#dashboard" class="account-tab-link" data-tab="dashboard">
+                                <svg class="account-icon" viewBox="0 0 24 24">
+                                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                                </svg>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#orders" class="account-tab-link" data-tab="orders">
+                                <svg class="account-icon" viewBox="0 0 24 24">
+                                    <path d="M13 12h7v1.5h-7zm0-2.5h7V11h-7zm0 5h7V16h-7zM21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15H3V6h18v13z"/>
+                                </svg>
+                                My Orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#addresses" class="account-tab-link" data-tab="addresses">
+                                <svg class="account-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                Addresses
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#payment" class="account-tab-link" data-tab="payment">
+                                <svg class="account-icon" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                                </svg>
+                                Payment Methods
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#account-details" class="account-tab-link" data-tab="account-details">
+                                <svg class="account-icon" viewBox="0 0 24 24">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                                Account Details
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <div class="account-content">
+                <!-- Dashboard Tab -->
+                <div class="account-tab active" id="dashboard">
+                    <h2>Account Overview</h2>
+                    
+                    <div class="account-summary">
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                                </svg>
+                            </div>
+                            <div class="summary-content">
+                                <h3>Recent Orders</h3>
+                                <!-- PHP integration point: Display order count -->
+                                <p class="summary-value">3 orders</p>
+                                <a href="#orders" class="view-all-link">View all orders</a>
+                            </div>
+                        </div>
+
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                            </div>
+                            <div class="summary-content">
+                                <h3>Saved Addresses</h3>
+                                <!-- PHP integration point: Display address count -->
+                                <p class="summary-value">2 addresses</p>
+                                <a href="#addresses" class="view-all-link">Manage addresses</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-orders">
+                        <h3>Recent Orders</h3>
+                        <!-- PHP integration point: Display recent orders -->
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div class="order-meta">
+                                    <span class="order-number">Order #PW-2023-4567</span>
+                                    <span class="order-date">Placed on October 15, 2023</span>
+                                </div>
+                                <div class="order-status shipped">Shipped</div>
+                            </div>
+                            <div class="order-products">
+                                <div class="order-product">
+                                    <img src="assets/images/products/related1.jpg" alt="Mercury 115 HP" class="product-image">
+                                    <div class="product-info">
+                                        <h4>Mercury 115 HP FourStroke</h4>
+                                        <p class="product-price">$9,999.00</p>
+                                        <p class="product-quantity">Quantity: 1</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-footer">
+                                <div class="order-total">
+                                    <span>Total:</span>
+                                    <span class="total-amount">$10,299.00</span>
+                                </div>
+                                <div class="order-actions">
+                                    <a href="#" class="btn btn-outline">View Order</a>
+                                    <a href="#" class="btn btn-outline">Track Order</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div class="account-tab" id="orders">
+                    <h2>My Orders</h2>
+                    <p class="tab-description">View your order history and manage current orders.</p>
+                    
+                    <!-- PHP integration point: Display all orders -->
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-meta">
+                                <span class="order-number">Order #PW-2023-4567</span>
+                                <span class="order-date">Placed on October 15, 2023</span>
+                            </div>
+                            <div class="order-status shipped">Shipped</div>
+                        </div>
+                        <div class="order-products">
+                            <div class="order-product">
+                                <img src="assets/images/products/related1.jpg" alt="Mercury 115 HP" class="product-image">
+                                <div class="product-info">
+                                    <h4>Mercury 115 HP FourStroke</h4>
+                                    <p class="product-price">$9,999.00</p>
+                                    <p class="product-quantity">Quantity: 1</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">
+                                <span>Total:</span>
+                                <span class="total-amount">$10,299.00</span>
+                            </div>
+                            <div class="order-actions">
+                                <a href="#" class="btn btn-outline">View Order</a>
+                                <a href="#" class="btn btn-outline">Track Order</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-meta">
+                                <span class="order-number">Order #PW-2023-3892</span>
+                                <span class="order-date">Placed on August 22, 2023</span>
+                            </div>
+                            <div class="order-status delivered">Delivered</div>
+                        </div>
+                        <div class="order-products">
+                            <div class="order-product">
+                                <img src="assets/images/products/related3.jpg" alt="Yamaha F150" class="product-image">
+                                <div class="product-info">
+                                    <h4>Yamaha F150</h4>
+                                    <p class="product-price">$12,899.00</p>
+                                    <p class="product-quantity">Quantity: 1</p>
+                                </div>
+                            </div>
+                            <div class="order-product">
+                                <img src="assets/images/products/accessory1.jpg" alt="Propeller" class="product-image">
+                                <div class="product-info">
+                                    <h4>Stainless Steel Propeller</h4>
+                                    <p class="product-price">$399.00</p>
+                                    <p class="product-quantity">Quantity: 1</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">
+                                <span>Total:</span>
+                                <span class="total-amount">$13,398.00</span>
+                            </div>
+                            <div class="order-actions">
+                                <a href="#" class="btn btn-outline">View Order</a>
+                                <a href="#" class="btn btn-outline">Reorder</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Addresses Tab -->
+                <div class="account-tab" id="addresses">
+                    <h2>My Addresses</h2>
+                    <p class="tab-description">Manage your shipping addresses for faster checkout.</p>
+                    
+                    <div class="address-actions">
+                        <button class="btn btn-primary" id="add-address-btn">Add New Address</button>
+                    </div>
+                    
+                    <!-- PHP integration point: Display saved addresses -->
+                    <div class="address-grid">
+                        <div class="address-card">
+                            <div class="address-default-badge">Default</div>
+                            <h3>John Doe</h3>
+                            <address>
+                                123 Marina Drive<br>
+                                Suite 45<br>
+                                Miami, FL 33132<br>
+                                United States
+                            </address>
+                            <div class="address-contact">
+                                <p>Phone: (305) 555-1234</p>
+                                <p>Email: john.doe@example.com</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="btn-edit-address">Edit</button>
+                                <button class="btn-remove-address">Remove</button>
+                            </div>
+                        </div>
+
+                        <div class="address-card">
+                            <h3>John Doe</h3>
+                            <address>
+                                456 Ocean View Road<br>
+                                Lake Worth, FL 33460<br>
+                                United States
+                            </address>
+                            <div class="address-contact">
+                                <p>Phone: (561) 555-5678</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="btn-set-default">Set as Default</button>
+                                <button class="btn-edit-address">Edit</button>
+                                <button class="btn-remove-address">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods Tab -->
+                <div class="account-tab" id="payment">
+                    <h2>Payment Methods</h2>
+                    <p class="tab-description">Manage your saved payment methods for faster checkout.</p>
+                    
+                    <div class="payment-actions">
+                        <button class="btn btn-primary" id="add-payment-btn">Add New Payment Method</button>
+                    </div>
+                    
+                    <!-- PHP integration point: Display saved payment methods -->
+                    <div class="payment-methods">
+                        <div class="payment-card">
+                            <div class="payment-default-badge">Default</div>
+                            <div class="payment-type">
+                                <svg class="payment-icon" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                                </svg>
+                                <span>VISA ending in 4242</span>
+                            </div>
+                            <div class="payment-expiry">Expires 05/2025</div>
+                            <div class="payment-actions">
+                                <button class="btn-edit-payment">Edit</button>
+                                <button class="btn-remove-payment">Remove</button>
+                            </div>
+                        </div>
+
+                        <div class="payment-card">
+                            <div class="payment-type">
+                                <svg class="payment-icon" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                                </svg>
+                                <span>MASTERCARD ending in 5555</span>
+                            </div>
+                            <div class="payment-expiry">Expires 11/2024</div>
+                            <div class="payment-actions">
+                                <button class="btn-set-default">Set as Default</button>
+                                <button class="btn-edit-payment">Edit</button>
+                                <button class="btn-remove-payment">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Details Tab -->
+                <div class="account-tab" id="account-details">
+                    <h2>Account Details</h2>
+                    <p class="tab-description">Update your personal information and password.</p>
+                    
+                    <form class="account-details-form">
+                        <div class="form-section">
+                            <h3>Personal Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name">First Name</label>
+                                    <input type="text" id="first-name" value="John">
+                                </div>
+                                <div class="form-group">
+                                    <label for="last-name">Last Name</label>
+                                    <input type="text" id="last-name" value="Doe">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="john.doe@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" value="(305) 555-1234">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Password Change</h3>
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <?php include 'includes/footer.php'; ?>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.account-tab-link').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = this.getAttribute('data-tab');
+                
+                // Update active tab in navigation
+                document.querySelectorAll('.account-nav li').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
+                
+                // Show corresponding content
+                document.querySelectorAll('.account-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // PHP integration point: This will be replaced with actual form handling
+        document.querySelector('.account-details-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Account details updated successfully!');
+            
+            /*
+            fetch('/scripts/update_account.php', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('Account updated successfully');
+                } else {
+                    showNotification('Error: ' + data.message, 'error');
+                }
+            });
+            */
+        });
+
+        // PHP integration point: Address management
+        document.getElementById('add-address-btn').addEventListener('click', function() {
+            // This would open a modal in production
+            alert('Add new address form would appear here');
+        });
+
+        // PHP integration point: Payment method management
+        document.getElementById('add-payment-btn').addEventListener('click', function() {
+            // This would open a modal in production
+            alert('Add new payment method form would appear here');
+        });
+    </script>
+</body>
+</html>
