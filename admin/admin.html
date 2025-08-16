@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerWave Outboards - Admin Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <img src="../assets/images/logo.png" alt="PowerWave Outboards" class="logo">
+                <h2>PowerWave Admin</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="products/list.php"><i class="fas fa-motorcycle"></i> Products</a></li>
+                    <li><a href="orders/list.php"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="users/list.php"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Reports</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../index.php" class="view-site"><i class="fas fa-external-link-alt"></i> View Site</a>
+                <a href="../scripts/logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="admin-search">
+                        <input type="text" placeholder="Search...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="admin-profile">
+                        <img src="../assets/images/icons/user-avatar.png" alt="Admin">
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <!-- Quick Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card sales">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Sales</h3>
+                            <!-- PHP placeholder: Replace with dynamic data -->
+                            <p class="stat-value">$24,560.00</p>
+                            <p class="stat-change"><i class="fas fa-arrow-up"></i> 12% from last month</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card orders">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>New Orders</h3>
+                            <!-- PHP placeholder: Replace with dynamic data -->
+                            <p class="stat-value">42</p>
+                            <p class="stat-change"><i class="fas fa-arrow-up"></i> 5% from last week</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card products">
+                        <div class="stat-icon">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Products</h3>
+                            <!-- PHP placeholder: Replace with dynamic data -->
+                            <p class="stat-value">28</p>
+                            <p class="stat-change"><i class="fas fa-plus-circle"></i> Add New</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card customers">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Customers</h3>
+                            <!-- PHP placeholder: Replace with dynamic data -->
+                            <p class="stat-value">156</p>
+                            <p class="stat-change"><i class="fas fa-arrow-up"></i> 8 new today</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders and Activity -->
+                <div class="content-grid">
+                    <section class="recent-orders">
+                        <div class="section-header">
+                            <h2>Recent Orders</h2>
+                            <a href="orders/list.php" class="view-all">View All</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- PHP placeholder: Loop through recent orders -->
+                                    <tr>
+                                        <td>#PW-1001</td>
+                                        <td>John Smith</td>
+                                        <td>2023-06-15</td>
+                                        <td>$1,250.00</td>
+                                        <td><span class="status shipped">Shipped</span></td>
+                                        <td><a href="orders/details.php?id=1001" class="btn-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#PW-1002</td>
+                                        <td>Sarah Johnson</td>
+                                        <td>2023-06-14</td>
+                                        <td>$3,420.00</td>
+                                        <td><span class="status processing">Processing</span></td>
+                                        <td><a href="orders/details.php?id=1002" class="btn-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#PW-1003</td>
+                                        <td>Michael Brown</td>
+                                        <td>2023-06-14</td>
+                                        <td>$2,150.00</td>
+                                        <td><span class="status pending">Pending</span></td>
+                                        <td><a href="orders/details.php?id=1003" class="btn-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#PW-1004</td>
+                                        <td>Emily Davis</td>
+                                        <td>2023-06-13</td>
+                                        <td>$5,670.00</td>
+                                        <td><span class="status delivered">Delivered</span></td>
+                                        <td><a href="orders/details.php?id=1004" class="btn-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#PW-1005</td>
+                                        <td>Robert Wilson</td>
+                                        <td>2023-06-12</td>
+                                        <td>$1,890.00</td>
+                                        <td><span class="status cancelled">Cancelled</span></td>
+                                        <td><a href="orders/details.php?id=1005" class="btn-view">View</a></td>
+                                    </tr>
+                                    <!-- End PHP placeholder -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Add this after the Recent Activity section -->
+<section class="crud-section">
+    <div class="section-header">
+        <h2>Quick CRUD Operations</h2>
+    </div>
+    
+    <div class="crud-tabs">
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="products">Products</button>
+            <button class="tab-button" data-tab="orders">Orders</button>
+            <button class="tab-button" data-tab="users">Users</button>
+        </div>
+        
+        <div class="tab-content active" id="products-tab">
+            <!-- Product CRUD -->
+            <div class="crud-actions">
+                <button class="crud-btn add" onclick="openProductModal('add')">
+                    <i class="fas fa-plus"></i> Add Product
+                </button>
+                <button class="crud-btn edit" onclick="openProductModal('edit')" disabled>
+                    <i class="fas fa-edit"></i> Edit Selected
+                </button>
+                <button class="crud-btn delete" onclick="deleteSelectedProduct()" disabled>
+                    <i class="fas fa-trash"></i> Delete Selected
+                </button>
+            </div>
+            
+            <div class="crud-table-container">
+                <table class="crud-table">
+                    <thead>
+                        <tr>
+                            <th width="50px"><input type="checkbox" id="select-all-products"></th>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- PHP placeholder: Product rows will be inserted here -->
+                        <tr>
+                            <td><input type="checkbox" class="product-checkbox"></td>
+                            <td>1</td>
+                            <td>WaveRunner 250HP</td>
+                            <td>Outboard Motors</td>
+                            <td>$5,299.00</td>
+                            <td>12</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="product-checkbox"></td>
+                            <td>2</td>
+                            <td>MarinePro 150HP</td>
+                            <td>Outboard Motors</td>
+                            <td>$3,899.00</td>
+                            <td>8</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="product-checkbox"></td>
+                            <td>3</td>
+                            <td>AquaJet 90HP</td>
+                            <td>Outboard Motors</td>
+                            <td>$2,499.00</td>
+                            <td>5</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                        </tr>
+                        <!-- End PHP placeholder -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="orders-tab">
+            <!-- Order CRUD -->
+            <div class="crud-actions">
+                <button class="crud-btn edit" onclick="openOrderModal('edit')" disabled>
+                    <i class="fas fa-edit"></i> Edit Selected
+                </button>
+                <button class="crud-btn status" onclick="updateOrderStatus()" disabled>
+                    <i class="fas fa-sync-alt"></i> Update Status
+                </button>
+                <select id="order-status-select" disabled>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            
+            <div class="crud-table-container">
+                <table class="crud-table">
+                    <thead>
+                        <tr>
+                            <th width="50px"><input type="checkbox" id="select-all-orders"></th>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- PHP placeholder: Order rows will be inserted here -->
+                        <tr>
+                            <td><input type="checkbox" class="order-checkbox"></td>
+                            <td>#PW-1001</td>
+                            <td>John Smith</td>
+                            <td>2023-06-15</td>
+                            <td>$1,250.00</td>
+                            <td><span class="status shipped">Shipped</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="order-checkbox"></td>
+                            <td>#PW-1002</td>
+                            <td>Sarah Johnson</td>
+                            <td>2023-06-14</td>
+                            <td>$3,420.00</td>
+                            <td><span class="status processing">Processing</span></td>
+                        </tr>
+                        <!-- End PHP placeholder -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="users-tab">
+            <!-- User CRUD -->
+            <div class="crud-actions">
+                <button class="crud-btn add" onclick="openUserModal('add')">
+                    <i class="fas fa-plus"></i> Add User
+                </button>
+                <button class="crud-btn edit" onclick="openUserModal('edit')" disabled>
+                    <i class="fas fa-edit"></i> Edit Selected
+                </button>
+                <button class="crud-btn delete" onclick="deleteSelectedUser()" disabled>
+                    <i class="fas fa-trash"></i> Delete Selected
+                </button>
+            </div>
+            
+            <div class="crud-table-container">
+                <table class="crud-table">
+                    <thead>
+                        <tr>
+                            <th width="50px"><input type="checkbox" id="select-all-users"></th>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- PHP placeholder: User rows will be inserted here -->
+                        <tr>
+                            <td><input type="checkbox" class="user-checkbox"></td>
+                            <td>1</td>
+                            <td>admin</td>
+                            <td>admin@powerwave.com</td>
+                            <td>Administrator</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="user-checkbox"></td>
+                            <td>2</td>
+                            <td>manager</td>
+                            <td>manager@powerwave.com</td>
+                            <td>Manager</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        <!-- End PHP placeholder -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Modal -->
+<div id="product-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('product-modal')">&times;</span>
+        <h2 id="product-modal-title">Add New Product</h2>
+        <form id="product-form">
+            <input type="hidden" id="product-id">
+            <div class="form-group">
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" required>
+            </div>
+            <div class="form-group">
+                <label for="product-description">Description</label>
+                <textarea id="product-description" rows="4"></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="product-category">Category</label>
+                    <select id="product-category" required>
+                        <option value="">Select Category</option>
+                        <option value="Outboard Motors">Outboard Motors</option>
+                        <option value="Boat Parts">Boat Parts</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Price ($)</label>
+                    <input type="number" id="product-price" step="0.01" min="0" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="product-stock">Stock Quantity</label>
+                    <input type="number" id="product-stock" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-status">Status</label>
+                    <select id="product-status" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="product-image">Product Image</label>
+                <input type="file" id="product-image" accept="image/*">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" onclick="closeModal('product-modal')">Cancel</button>
+                <button type="submit" class="btn-submit">Save Product</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Order Modal -->
+<div id="order-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('order-modal')">&times;</span>
+        <h2>Edit Order #<span id="order-id-display"></span></h2>
+        <form id="order-form">
+            <input type="hidden" id="order-id">
+            <div class="form-group">
+                <label>Customer: <span id="order-customer"></span></label>
+            </div>
+            <div class="form-group">
+                <label>Order Date: <span id="order-date"></span></label>
+            </div>
+            <div class="form-group">
+                <label>Total Amount: <span id="order-amount"></span></label>
+            </div>
+            <div class="form-group">
+                <label for="order-status">Status</label>
+                <select id="order-status" required>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="order-notes">Admin Notes</label>
+                <textarea id="order-notes" rows="4"></textarea>
+            </div>
+            <div class="order-items">
+                <h3>Order Items</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-items-list">
+                        <!-- Order items will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" onclick="closeModal('order-modal')">Cancel</button>
+                <button type="submit" class="btn-submit">Update Order</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- User Modal -->
+<div id="user-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('user-modal')">&times;</span>
+        <h2 id="user-modal-title">Add New User</h2>
+        <form id="user-form">
+            <input type="hidden" id="user-id">
+            <div class="form-group">
+                <label for="user-username">Username</label>
+                <input type="text" id="user-username" required>
+            </div>
+            <div class="form-group">
+                <label for="user-email">Email</label>
+                <input type="email" id="user-email" required>
+            </div>
+            <div class="form-group">
+                <label for="user-password">Password</label>
+                <input type="password" id="user-password">
+                <small>Leave blank to keep current password</small>
+            </div>
+            <div class="form-group">
+                <label for="user-role">Role</label>
+                <select id="user-role" required>
+                    <option value="administrator">Administrator</option>
+                    <option value="manager">Manager</option>
+                    <option value="editor">Editor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="user-status">Status</label>
+                <select id="user-status" required>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" onclick="closeModal('user-modal')">Cancel</button>
+                <button type="submit" class="btn-submit">Save User</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+                        <div class="recent-activity">
+                            <div class="section-header">
+                                <h2>Recent Activity</h2>
+                            </div>
+                            <ul class="activity-list">
+                                <!-- PHP placeholder: Recent activity log -->
+                                <li>
+                                    <i class="fas fa-shopping-cart activity-icon order"></i>
+                                    <div class="activity-details">
+                                        <p>New order #PW-1006 received</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-user activity-icon user"></i>
+                                    <div class="activity-details">
+                                        <p>New customer registered: David Miller</p>
+                                        <span class="activity-time">5 hours ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-motorcycle activity-icon product"></i>
+                                    <div class="activity-details">
+                                        <p>Product updated: WaveRunner 250HP</p>
+                                        <span class="activity-time">Yesterday</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-truck activity-icon shipping"></i>
+                                    <div class="activity-details">
+                                        <p>Order #PW-1004 shipped to customer</p>
+                                        <span class="activity-time">Yesterday</span>
+                                    </div>
+                                </li>
+                                <!-- End PHP placeholder -->
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/admin.js"></script>
+</body>
+</html>
