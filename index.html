@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend App</title>
+    <title>E-Commerce Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
@@ -12,44 +12,52 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-code-square me-2"></i>App</a>
+            <a class="navbar-brand fw-bold" href="#" onclick="showSection('products')">
+                <i class="bi bi-shop me-2"></i>E-Store
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#dashboard" data-section="dashboard">
-                            <i class="bi bi-house me-1"></i>Dashboard
+                        <a class="nav-link active" href="#" onclick="showSection('products')" data-section="products">
+                            <i class="bi bi-grid me-1"></i>Products
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#users" data-section="users">
-                            <i class="bi bi-people me-1"></i>Users
+                    <li class="nav-item" id="ordersNavItem" style="display: none;">
+                        <a class="nav-link" href="#" onclick="showSection('orders')" data-section="orders">
+                            <i class="bi bi-bag me-1"></i>My Orders
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#products" data-section="products">
-                            <i class="bi bi-box me-1"></i>Products
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#orders" data-section="orders">
-                            <i class="bi bi-cart me-1"></i>Orders
+                    <li class="nav-item" id="adminNavItem" style="display: none;">
+                        <a class="nav-link" href="#" onclick="showSection('admin')" data-section="admin">
+                            <i class="bi bi-gear me-1"></i>Admin
                         </a>
                     </li>
                 </ul>
                 <div class="navbar-nav">
-                    <div class="nav-item dropdown">
+                    <div class="nav-item" id="cartNavItem" style="display: none;">
+                        <a class="nav-link position-relative" href="#" onclick="showSection('cart')" data-section="cart">
+                            <i class="bi bi-cart3 me-1"></i>Cart
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartBadge" style="display: none;">
+                                0
+                            </span>
+                        </a>
+                    </div>
+                    <div class="nav-item dropdown" id="userDropdown" style="display: none;">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle me-1"></i>Account
+                            <i class="bi bi-person-circle me-1"></i><span id="userDisplayName">User</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#profile"><i class="bi bi-person me-2"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="#settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showSection('profile')"><i class="bi bi-person me-2"></i>Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
                         </ul>
+                    </div>
+                    <div class="nav-item" id="authButtons">
+                        <button class="btn btn-outline-light me-2" onclick="showSection('login')">Login</button>
+                        <button class="btn btn-light" onclick="showSection('register')">Register</button>
                     </div>
                 </div>
             </div>
@@ -59,185 +67,252 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="container-fluid">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="content-section active">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="h3 mb-0">Dashboard</h1>
-                    <button class="btn btn-primary" id="refreshDashboard">
-                        <i class="bi bi-arrow-clockwise me-1"></i>Refresh
-                    </button>
-                </div>
-
-                <!-- Stats Cards -->
-                <div class="row mb-4">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Users</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalUsers">0</div>
+            <!-- Login Section -->
+            <section id="login" class="content-section">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card shadow">
+                            <div class="card-body p-5">
+                                <div class="text-center mb-4">
+                                    <i class="bi bi-person-circle display-4 text-primary"></i>
+                                    <h2 class="mt-3">Welcome Back</h2>
+                                    <p class="text-muted">Sign in to your account</p>
+                                </div>
+                                <form id="loginForm">
+                                    <div class="mb-3">
+                                        <label for="loginEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" required>
                                     </div>
-                                    <div class="col-auto">
-                                        <i class="bi bi-people fa-2x text-gray-300"></i>
+                                    <div class="mb-3">
+                                        <label for="loginPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="loginPassword" required>
                                     </div>
+                                    <button type="submit" class="btn btn-primary w-100 mb-3">Sign In</button>
+                                </form>
+                                <div class="text-center">
+                                    <p class="mb-0">Don't have an account? 
+                                        <a href="#" onclick="showSection('register')" class="text-primary">Sign up</a>
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Products</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalProducts">0</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="bi bi-box fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Orders</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalOrders">0</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="bi bi-cart fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Revenue</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalRevenue">$0</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="bi bi-currency-dollar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Recent Activity</h6>
-                    </div>
-                    <div class="card-body">
-                        <div id="recentActivity" class="list-group list-group-flush">
-                            <!-- Activity items will be loaded here -->
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Users Section -->
-            <section id="users" class="content-section">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="h3 mb-0">Users Management</h1>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
-                        <i class="bi bi-plus-circle me-1"></i>Add User
-                    </button>
-                </div>
-
-                <!-- Users Table -->
-                <div class="card shadow">
-                    <div class="card-header py-3">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h6 class="m-0 font-weight-bold text-primary">Users List</h6>
-                            </div>
-                            <div class="col-auto">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search users..." id="userSearch">
-                                    <button class="btn btn-outline-secondary" type="button">
-                                        <i class="bi bi-search"></i>
-                                    </button>
+            <!-- Register Section -->
+            <section id="register" class="content-section">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card shadow">
+                            <div class="card-body p-5">
+                                <div class="text-center mb-4">
+                                    <i class="bi bi-person-plus display-4 text-primary"></i>
+                                    <h2 class="mt-3">Create Account</h2>
+                                    <p class="text-muted">Join our community today</p>
+                                </div>
+                                <form id="registerForm">
+                                    <div class="mb-3">
+                                        <label for="registerName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="registerName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="registerEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="registerEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="registerPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="registerPassword" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                                        <input type="password" class="form-control" id="registerConfirmPassword" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 mb-3">Create Account</button>
+                                </form>
+                                <div class="text-center">
+                                    <p class="mb-0">Already have an account? 
+                                        <a href="#" onclick="showSection('login')" class="text-primary">Sign in</a>
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="usersTable">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Created</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Users will be loaded here -->
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Products Section -->
-            <section id="products" class="content-section">
+            <section id="products" class="content-section active">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="h3 mb-0">Products Management</h1>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
-                        <i class="bi bi-plus-circle me-1"></i>Add Product
+                    <h1 class="h3 mb-0">Products</h1>
+                    <div class="d-flex gap-2">
+                        <select class="form-select" id="categoryFilter" style="width: auto;">
+                            <option value="">All Categories</option>
+                        </select>
+                        <div class="input-group" style="width: 300px;">
+                            <input type="text" class="form-control" placeholder="Search products..." id="productSearch">
+                            <button class="btn btn-outline-secondary" type="button" onclick="searchProducts()">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="productsGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+
+                <!-- Pagination -->
+                <nav aria-label="Products pagination" class="mt-4">
+                    <ul class="pagination justify-content-center" id="productsPagination">
+                        <!-- Pagination will be loaded here -->
+                    </ul>
+                </nav>
+            </section>
+
+            <!-- Cart Section -->
+            <section id="cart" class="content-section">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="h3 mb-0">Shopping Cart</h1>
+                    <button class="btn btn-outline-danger" onclick="clearCart()" id="clearCartBtn">
+                        <i class="bi bi-trash me-1"></i>Clear Cart
                     </button>
                 </div>
 
-                <!-- Products Grid -->
-                <div class="row" id="productsGrid">
-                    <!-- Products will be loaded here -->
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div id="cartItems">
+                                    <!-- Cart items will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <h5 class="mb-0">Order Summary</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span id="cartSubtotal">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Tax:</span>
+                                    <span id="cartTax">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>Shipping:</span>
+                                    <span id="cartShipping">$0.00</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <strong>Total:</strong>
+                                    <strong id="cartTotal">$0.00</strong>
+                                </div>
+                                <button class="btn btn-primary w-100" onclick="checkout()" id="checkoutBtn">
+                                    <i class="bi bi-credit-card me-1"></i>Checkout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Orders Section -->
             <section id="orders" class="content-section">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="h3 mb-0">Orders Management</h1>
+                    <h1 class="h3 mb-0">My Orders</h1>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="pending">Pending</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="completed">Completed</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="cancelled">Cancelled</button>
+                        <button type="button" class="btn btn-outline-primary active" data-filter="all" onclick="filterOrders('all')">All</button>
+                        <button type="button" class="btn btn-outline-primary" data-filter="pending" onclick="filterOrders('pending')">Pending</button>
+                        <button type="button" class="btn btn-outline-primary" data-filter="completed" onclick="filterOrders('completed')">Completed</button>
+                        <button type="button" class="btn btn-outline-primary" data-filter="cancelled" onclick="filterOrders('cancelled')">Cancelled</button>
                     </div>
                 </div>
 
-                <!-- Orders Table -->
+                <div id="ordersList">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <h5 class="mb-0">Profile Settings</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="profileForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="profileName" class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" id="profileName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="profileEmail" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="profileEmail" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="profilePhone" class="form-label">Phone</label>
+                                                <input type="tel" class="form-control" id="profilePhone">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="profileAddress" class="form-label">Address</label>
+                                                <input type="text" class="form-control" id="profileAddress">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Section -->
+            <section id="admin" class="content-section">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="h3 mb-0">Admin Panel</h1>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+                        <i class="bi bi-plus-circle me-1"></i>Add Product
+                    </button>
+                </div>
+
                 <div class="card shadow">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Manage Products</h6>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover" id="ordersTable">
+                            <table class="table table-hover" id="adminProductsTable">
                                 <thead>
                                     <tr>
-                                        <th>Order ID</th>
-                                        <th>Customer</th>
-                                        <th>Total</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Category</th>
                                         <th>Status</th>
-                                        <th>Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Orders will be loaded here -->
+                                    <!-- Admin products will be loaded here -->
                                 </tbody>
                             </table>
                         </div>
@@ -246,49 +321,6 @@
             </section>
         </div>
     </main>
-
-    <!-- User Modal -->
-    <div class="modal fade" id="userModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add/Edit User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="userForm">
-                        <input type="hidden" id="userId">
-                        <div class="mb-3">
-                            <label for="userName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="userName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="userEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="userEmail" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="userRole" class="form-label">Role</label>
-                            <select class="form-select" id="userRole" required>
-                                <option value="">Select Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-                                <option value="moderator">Moderator</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="userPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="userPassword">
-                            <div class="form-text">Leave blank to keep current password</div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="saveUser">Save User</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Product Modal -->
     <div class="modal fade" id="productModal" tabindex="-1">
@@ -323,13 +355,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="productCategory" class="form-label">Category</label>
-                                    <select class="form-select" id="productCategory" required>
-                                        <option value="">Select Category</option>
-                                        <option value="electronics">Electronics</option>
-                                        <option value="clothing">Clothing</option>
-                                        <option value="books">Books</option>
-                                        <option value="home">Home & Garden</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="productCategory" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -339,11 +365,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="productImage" class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="productImage">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" id="saveProduct">Save Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal fade" id="productDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productDetailTitle">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="productDetailBody">
+                    <!-- Product details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addToCartFromDetail">Add to Cart</button>
                 </div>
             </div>
         </div>
