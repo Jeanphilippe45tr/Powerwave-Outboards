@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marine Motors Pro - Premium Boat Motors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <i class="fas fa-ship me-2"></i>Marine Motors Pro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle" id="cartCount">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" id="authSection">
+                        <button class="btn btn-outline-light" id="loginBtn">Login</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold text-white mb-4">
+                            Premium Marine Motors for Every Adventure
+                        </h1>
+                        <p class="lead text-white-50 mb-4">
+                            Discover our extensive collection of high-performance boat motors from trusted brands like Mercury, Yamaha, and Honda.
+                        </p>
+                        <button class="btn btn-primary btn-lg me-3" onclick="scrollToProducts()">
+                            Shop Now <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
+                        <button class="btn btn-outline-light btn-lg" onclick="showLoginModal()">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="display-5 fw-bold mb-3">Our Product Range</h2>
+                    <p class="lead text-muted">
+                        From powerful outboard motors to efficient electric options, find the perfect motor for your vessel.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="row mb-4">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <select class="form-select" id="categoryFilter">
+                                        <option value="">All Categories</option>
+                                        <option value="1">Outboard Motors</option>
+                                        <option value="2">Inboard Motors</option>
+                                        <option value="3">Electric Motors</option>
+                                        <option value="4">Parts & Accessories</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="brandFilter">
+                                        <option value="">All Brands</option>
+                                        <option value="1">Mercury Marine</option>
+                                        <option value="2">Yamaha Marine</option>
+                                        <option value="3">Honda Marine</option>
+                                        <option value="4">Evinrude</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control" id="minPrice" placeholder="Min Price">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control" id="maxPrice" placeholder="Max Price">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search products...">
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" onclick="loadProducts()">
+                                        <i class="fas fa-search me-2"></i>Search
+                                    </button>
+                                    <button class="btn btn-outline-secondary ms-2" onclick="clearFilters()">
+                                        Clear Filters
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="row" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="text-center d-none" id="loadingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="display-5 fw-bold mb-4">Why Choose Marine Motors Pro?</h2>
+                    <div class="row mt-5">
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-card">
+                                <i class="fas fa-award fa-3x text-primary mb-3"></i>
+                                <h4>Premium Quality</h4>
+                                <p class="text-muted">Only the finest marine motors from trusted manufacturers</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-card">
+                                <i class="fas fa-shipping-fast fa-3x text-primary mb-3"></i>
+                                <h4>Fast Delivery</h4>
+                                <p class="text-muted">Quick and secure shipping to get you back on the water</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-card">
+                                <i class="fas fa-tools fa-3x text-primary mb-3"></i>
+                                <h4>Expert Support</h4>
+                                <p class="text-muted">Professional installation and maintenance services</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold">Marine Motors Pro</h5>
+                    <p class="text-muted">Your trusted partner for premium marine motors and accessories.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-muted text-decoration-none">Home</a></li>
+                        <li><a href="#products" class="text-muted text-decoration-none">Products</a></li>
+                        <li><a href="#about" class="text-muted text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold">Contact Info</h5>
+                    <p class="text-muted mb-1"><i class="fas fa-phone me-2"></i>(555) 123-4567</p>
+                    <p class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>info@marinemotorspro.com</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="text-muted mb-0">&copy; 2025 Marine Motors Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalTitle">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="authForm">
+                        <div class="mb-3" id="firstNameGroup" style="display: none;">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" required>
+                        </div>
+                        <div class="mb-3" id="lastNameGroup" style="display: none;">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" required>
+                        </div>
+                        <div class="mb-3" id="usernameGroup" style="display: none;">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3" id="phoneGroup" style="display: none;">
+                            <label for="phone" class="form-label">Phone (Optional)</label>
+                            <input type="tel" class="form-control" id="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" id="authSubmitBtn">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <button type="button" class="btn btn-link" id="toggleAuthMode">
+                            Don't have an account? Register
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalTitle">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="productModalBody">
+                    <!-- Product details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="cartModalBody">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+                    <button type="button" class="btn btn-primary" id="checkoutBtn" onclick="showCheckout()">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Checkout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="checkoutForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="fw-bold mb-3">Shipping Address</h6>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="shippingStreet" placeholder="Street Address" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="form-control" id="shippingCity" placeholder="City" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="form-control" id="shippingState" placeholder="State" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="shippingZip" placeholder="ZIP Code" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="fw-bold mb-3">Billing Address</h6>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="sameAsShipping" checked>
+                                    <label class="form-check-label" for="sameAsShipping">
+                                        Same as shipping address
+                                    </label>
+                                </div>
+                                <div id="billingFields" style="display: none;">
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="billingStreet" placeholder="Street Address">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" class="form-control" id="billingCity" placeholder="City">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <input type="text" class="form-control" id="billingState" placeholder="State">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="billingZip" placeholder="ZIP Code">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <h6 class="fw-bold mb-3">Payment Method</h6>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="credit_card" checked>
+                                    <label class="form-check-label" for="creditCard">
+                                        <i class="fas fa-credit-card me-2"></i>Credit Card
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="paypal">
+                                    <label class="form-check-label" for="paypal">
+                                        <i class="fab fa-paypal me-2"></i>PayPal
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="fw-bold">Total: $<span id="checkoutTotal">0.00</span></h5>
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-lock me-2"></i>Place Order
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">My Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="profileForm">
+                        <div class="mb-3">
+                            <label for="profileFirstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="profileFirstName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profileLastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="profileLastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profileUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="profileUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profileEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="profileEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profilePhone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="profilePhone">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                    
+                    <hr class="my-4">
+                    
+                    <h6 class="fw-bold mb-3">My Orders</h6>
+                    <div id="userOrders">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Marine Motors Pro</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="toastBody">
+                <!-- Toast message will be here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
